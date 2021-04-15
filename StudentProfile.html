@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Student Profile</title>
+</head>
+
+<body>
+    <div id="black-LogIn">
+        <nav>
+            <a href="index.html">HOME</a> &nbsp
+            <a href="about.html">ABOUT</a> &nbsp
+            <a href="howitworks.html">HOW IT WORKS</a> &nbsp
+            <a href="team.html">TEAM</a> &nbsp
+            <a href="contacts.html">CONTACT</a> &nbsp
+        </nav>
+        <h1><i>PEER EVALUATION SYSTEM</i></h1>
+    </div>
+    <div id="profile">
+        <h1>Your Profile</h1><br><br>
+        <div id="grey">
+            <h2>My Courses</h2>
+            <hr>
+            <table id="profileTable">
+                <tbody>
+                    <tr>
+                        <th>Course Name:</th>
+                        <th>Class Size:</th>
+                        <th>Course Code:</th>
+                        <th>View Available Surveys:</th>
+                    </tr>
+                    <tr>
+                        <td id="row" width: 50%>IS 424</td>
+                        <td id="row">24 Students</td>
+                        <td id="row">O4C6X</td>
+                        <td id="selection">
+                            <form action="/action_page.php">
+                                <label for="surveys">View Available Surveys:</label>
+                                <select id="surveys">
+                                  <option value="Kyle">Kyle</option>
+                                  <option value="Diana">Diana</option>
+                                  <option value="Olivia">Olivia</option>
+                                  <option value="Breydn">Breydn</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br><br><br>
+            <h2>Survey History</h2>
+            <hr>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Course Name:</th>
+                        <th>Professor Name:</th>
+                        <th>Peer Reviewed:</th>
+                        <th>Status:</th>
+                    </tr>
+                    <tr>
+                        <td id="row" width: 50%>IS 424</td>
+                        <td id="row">Professor Khasawneh</td>
+                        <td id="row">Reviewer: Kyle</td>
+                        <td id="row">Submitted</td>
+                        <td id="selection"><button id="ViewButton" type="button">View</button></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br><br><br>
+            <h2>Join Course with Code</h2>
+            <hr><br>
+            <label for="CourseCode" style="font-size:22px"><b>Enter your course code:</b></label>
+            <input type="text" size="30" placeholder="Enter course code..." name="CourseCode" required>
+            <button id="joinCourseButton" type="button" onclick="document.location='StudentProfile.html'">Join Course</button>
+            <h5>Don't have a course code? Contact your instructor to obtain their course code.</h5>
+        </div>
+    </div>
+    <div id="footer2">
+</body>
+<nav id="nav2">
+    <a href="index.html">HOME</a> &nbsp
+    <a href="about.html">ABOUT</a> &nbsp
+    <a href="howitworks.html">HOW IT WORKS</a> &nbsp
+    <a href="team.html">TEAM</a> &nbsp
+    <a href="contacts.html">CONTACT</a> &nbsp
+</nav>
+</div>
+
+</html>

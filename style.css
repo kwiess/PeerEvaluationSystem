@@ -1,0 +1,209 @@
+nav {
+    text-align: right;
+}
+#nav2{
+    text-align: left;
+}
+a{
+    color: white;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+    margin: 1%;
+}
+h1{
+    text-align: left;
+    text-decoration: underline;
+    font-weight: 400;
+}
+#black{
+    background-color: #383838;
+    color: white;
+    padding: 1px;
+    height: 75%;
+    text-align: center;
+}
+#black-LogIn{
+    background-color: #383838;
+    color: white;
+    padding: 1px;
+    height: 12%;
+    text-align: center;
+}
+#title{
+    font-size: 450%;
+}
+#ending{
+    text-align: center;
+    line-height: 150%;
+    color: darkgrey;
+}
+#team{
+    text-align: center;
+    font-size: x-small;
+}
+#email{
+    text-align: center;
+    font-size: x-small;
+    color: darkgrey;
+}
+#footer{
+    background-color: black;
+    margin-top: 194px; 
+    z-index: 1; 
+    width: 100%; 
+}
+#footer2{
+    background-color: black;
+    margin-top: 600px;
+    z-index: 1; 
+    width: 100%; 
+}
+#IamaStudent{
+    border: black solid 5px;
+    width: 20%;
+    height: 40%;
+    padding-bottom: 5%;
+    padding-right: 5%;
+    float:left ;
+    margin-top: 15% ;
+    margin-left: 15%;
+    font-family:  Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 5px;
+}
+#IamaProfessor{
+    border: black solid 5px;
+    width: 20%;
+    height: 40%;
+    padding-bottom: 5%;
+    padding-right: 5%;
+    float:  left;
+    margin-top: 15% ;
+    margin-left: 15%;
+    font-family:  Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 5px;
+}
+#student{
+    background-color: grey;
+    height: 20%;
+    width: 125%;
+    font-weight: bold;
+    font-size: 200%;
+    text-align: center;
+    font-family:  Tahoma, Geneva, Verdana, sans-serif;
+}
+#professor{
+    background-color: grey;
+    height: 20%;
+    width: 125%;
+    font-weight: bold;
+    font-size: 200%;
+    text-align: center;
+    font-family:  Tahoma, Geneva, Verdana, sans-serif;
+}
+#button{
+    text-align: center;
+}
+#LogIn{
+    text-align: center;
+    font-size: x-large;
+    padding: 5%; 
+    height: 55%;
+}
+#LogInTitle{
+    text-align: center;
+    text-decoration: none;
+    padding: 2%;
+}
+#ForgotPassword{
+    margin: 2%;
+}
+#SignIn{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 4%;
+    padding-left: 4%;
+    background-color: black;
+    color: white;
+    font-size: large;
+}
+#agree{
+    font-size: small;
+}
+#profile{
+    padding: 2%;
+    height: 55%;
+}
+#table{
+    width: 100%;
+}
+#row{
+    font-size: x-large;
+    text-align: center;
+    border-right: black thin solid;
+    width: 18%;
+    color: grey;
+}
+#selection{
+    font-size: x-large;
+    text-align: center;
+    border-right: black thin solid;
+    width: 60%;
+    color: grey;
+    padding-top: 2%;
+}
+#profileButton{
+    background-color: black;
+    color: lightgrey;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 10%;
+    padding-left: 10%;
+    margin: 10%;
+    font-size: medium;
+}
+#joinCourseButton{
+    background-color: black;
+    color: lightgrey;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 5%;
+    padding-left: 5%;
+    margin: 1%;
+    font-size: medium;
+}
+#grey{
+    color: grey;
+}
+#ViewButton{
+    background-color: black;
+    color: lightgrey;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-right: 20%;
+    padding-left: 20%;
+    font-size: medium;
+}
+#ContactForm{
+    text-align: center;
+    font-size: x-large;
+}
+#HowItWorks{
+    padding: 3%;
+}
+#teamPage{
+    font-size: x-large;
+    text-align: center;
+    margin: 5%;
+}
+#teamMember{
+    border: black solid 5px;
+    width: 16%;
+    height: 60%;
+    padding-bottom: 2%;
+    padding-right: 2%;
+    float:left;
+    margin-top: 1% ;
+    margin-left: 5%;
+    font-family:  Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 5px;
