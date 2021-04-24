@@ -8,13 +8,13 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema infosys424
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema infosys424
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `infosys424` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema groupproject
 -- -----------------------------------------------------
@@ -23,12 +23,12 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 -- Schema groupproject
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `groupproject` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+USE `infosys424` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Student`
+-- Table `infosys424`.`Student`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Student` (
+CREATE TABLE IF NOT EXISTS `infosys424`.`Student` (
   `StudentID` INT NOT NULL,
   `StudentName` VARCHAR(45) NULL,
   `StudentEmail` VARCHAR(45) NULL,
@@ -38,9 +38,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Professor`
+-- Table `infosys424`.`Professor`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Professor` (
+CREATE TABLE IF NOT EXISTS `infosys424`.`Professor` (
   `ProfessorID` VARCHAR(45) NOT NULL,
   `ProfessorName` VARCHAR(45) NULL,
   PRIMARY KEY (`ProfessorID`))
@@ -48,9 +48,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Course`
+-- Table `infosys424`.`Course`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Course` (
+CREATE TABLE IF NOT EXISTS `infosys424`.`Course` (
   `CourseID` INT NOT NULL,
   `CourseName` VARCHAR(45) NULL,
   `ProfessorID` INT NULL,
@@ -59,9 +59,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Evaluation`
+-- Table `infosys424`.`Evaluation`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Evaluation` (
+CREATE TABLE IF NOT EXISTS `infosys424`.`Evaluation` (
   `EvaluationID` INT NOT NULL,
   `StudentID` INT NULL,
   `EvaluatedStudentsID` VARCHAR(45) NULL,
@@ -73,21 +73,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Evaluation` (
   INDEX `fk_Evaluation_Course1_idx` (`CourseID` ASC) VISIBLE,
   CONSTRAINT `fk_Evaluation_Student1`
     FOREIGN KEY (`StudentID`)
-    REFERENCES `mydb`.`Student` (`StudentID`)
+    REFERENCES `infosys424`.`Student` (`StudentID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Evaluation_Course1`
     FOREIGN KEY (`CourseID`)
-    REFERENCES `mydb`.`Course` (`CourseID`)
+    REFERENCES `infosys424`.`Course` (`CourseID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Group`
+-- Table `infosys424`.`Group`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Group` (
+CREATE TABLE IF NOT EXISTS `infosys424`.`Group` (
   `GroupNumber` INT NOT NULL,
   `StudentIDList` VARCHAR(45) NULL,
   `ProfessorID` VARCHAR(45) NULL,
@@ -97,12 +97,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Group` (
   INDEX `fk_Group_Professor1_idx` (`ProfessorID` ASC) VISIBLE,
   CONSTRAINT `fk_Group_Course1`
     FOREIGN KEY (`CourseID`)
-    REFERENCES `mydb`.`Course` (`CourseID`)
+    REFERENCES `infosys424`.`Course` (`CourseID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Group_Professor1`
     FOREIGN KEY (`ProfessorID`)
-    REFERENCES `mydb`.`Professor` (`ProfessorID`)
+    REFERENCES `infosys424`.`Professor` (`ProfessorID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

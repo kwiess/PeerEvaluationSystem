@@ -1,6 +1,35 @@
 <html lang="en">
 
 <head>
+
+<?php 
+
+// $record_id = $_POST['record_id'];
+// $actionCode = $_POST['actionCode'];
+// $keyword;
+
+// if($actionCode==1){
+//     $keyword="ADD";
+// }elseif($actionCode==2){
+//     $keyword="DELETE";
+// }
+
+include("./includes/connect.inc.php");
+include("./includes/student.auth.inc.php");
+include('./includes/ChromePhp.php');
+
+if(isset($_POST['submit_button'])){
+
+}
+
+ChromePhp::log("Past _POST");
+ChromePhp::log($_POST);
+
+
+
+        ?> 
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
