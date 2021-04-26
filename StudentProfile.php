@@ -1,6 +1,9 @@
 <?php
-    include('db_connection.php');
+    // include('db_connection.php'); //REVIEW: abosulte for Diana
+    include("./includes/ChromePhp.php");
+    include_once("./includes/connect.inc.php");
     include('includes/student.auth.inc.php');
+
 ?>
 
 <html lang="en">
@@ -125,7 +128,7 @@
                         $row_professorname = mysqli_fetch_array($result_professorname);
                         
                         $evaluatedstudent_id = $row_evaluations["EvaluatedStudentsID"];
-                        $sql_peerreviewed = "SELECT `StudentName` FROM `Student` WHERE `StudentID` = $evaluatedstudent_id";
+                        $sql_peerreviewed = "SELECT `StudentName`, `StudentID` FROM `Student` WHERE `StudentID` = $evaluatedstudent_id";
                         $result_peerreviewed = mysqli_query($conn, $sql_peerreviewed);
                         $row_peerreviewed = mysqli_fetch_array($result_peerreviewed);
 
@@ -136,7 +139,7 @@
                         <td id="row"><?php echo $row_professorname["ProfessorName"]; ?></td>
                         <td id="row">Reviewed: <?php echo $row_peerreviewed["StudentName"]; ?></td>
                         <td id="row">Submitted</td>
-                        <td id="selection"><button onclick="window.location.href='StudentReviewEval.php'" id="ViewButton" type="button">View</button></td>
+                        <td id="selection"><button onclick="window.location.href='StudentReviewEval.php?id=<?php echo $row_evaluations[EvaluationID];?>'" id="ViewButton" type="button">View</button></td>
                         </tr>
                     <?php
                     }
