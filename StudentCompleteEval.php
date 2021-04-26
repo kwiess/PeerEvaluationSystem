@@ -40,7 +40,6 @@ ChromePhp::log($_POST);
     <div id="black-LogIn">
         <nav>
             <a href="index.html">HOME</a> &nbsp
-            <a href="about.html">ABOUT</a> &nbsp
             <a href="howitworks.html">HOW IT WORKS</a> &nbsp
             <a href="team.html">TEAM</a> &nbsp
             <a href="contacts.html">CONTACT</a> &nbsp
@@ -95,7 +94,6 @@ ChromePhp::log($_POST);
 </body>
 <nav id="nav2">
     <a href="index.html">HOME</a> &nbsp
-    <a href="about.html">ABOUT</a> &nbsp
     <a href="howitworks.html">HOW IT WORKS</a> &nbsp
     <a href="team.html">TEAM</a> &nbsp
     <a href="contacts.html">CONTACT</a> &nbsp
