@@ -32,39 +32,39 @@
             <h2><u>You are viewing **Student** evaluations</u></h2> <br>
             
             Select Another Student
-            <select name="studentselect" id="studentselect"> 
-            </select>
-            <hr>      
+   
+            <hr>   
+               
         </div>
-
-
         <?php
     $localhost = "localhost";
     $username = "root";
     $password = "";
     $database = "PeerEvaluation";
 
-    
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
- 
-$sql = "SELECT EvalQuestions FROM evaluation WHERE StudentID = StudentID";
-$result = $conn->query($sql);
+    $conn = mysqli_connect($localhost, $username, $password, $database);
 
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-  }
-} else {
-  echo "0 results";
-}
-$conn->close();
-?>
+    if (!$conn) {
+        echo "<p>Connection failed " . mysqli_connect_error() . "</p>";
+    } else {
+        //echo "<p>Connection successful </p>";
+    }
+
+    ?>
+        <?php
+        // $name = "$_POST['StudentName']";
+        $name= "Kyle";
+        $sql_studentid = "SELECT 'StudentID' FROM 'student' WHERE 'StudentName' = $name";
+        $result_studentid = mysqli_query($conn, $sql_studentid);
+        $row_studentid = mysqli_fetch_array($result_studentid);
+        $studentid = $row_studentid["StudentID"];
+        $sql_studenteval = "SELECT 'EvalQuestions' FROM 'Evaluations' WHERE 'studentID'=$student_id";
+        $result_studenteval = mysqli_query($conn, $sql_studenteval);
+        $row_studenteval = mysqli_fetch_array($result_studenteval);
+        $student_eval = $row_studenteval["EvalQuestions"];
+        echo($studenteval);
+        mysqli_close($conn);
+        ?>
     </div>
 
     
