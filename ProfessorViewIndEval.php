@@ -58,10 +58,11 @@
         $result_studentid = mysqli_query($conn, $sql_studentid);
         $row_studentid = mysqli_fetch_array($result_studentid);
         $studentid = $row_studentid["StudentID"];
-        //$students_eval = "SELECT 'EvalQuestions' FROM 'Evaluations' WHERE 'studentID'=$student_id";
-        //$student_id = mysqli_query($conn, "SELECT 'StudentID' FROM 'student' WHERE 'StudentName' = 'Kyle'");
-        //$students_eval = mysqli_query($conn, "SELECT 'EvalQuestions' FROM 'Evaluations' WHERE 'studentID'=$student_id");
-        echo(gettype(($student_id)));
+        $sql_studenteval = "SELECT 'EvalQuestions' FROM 'Evaluations' WHERE 'studentID'=$student_id";
+        $result_studenteval = mysqli_query($conn, $sql_studenteval);
+        $row_studenteval = mysqli_fetch_array($result_studenteval);
+        $student_eval = $row_studenteval["EvalQuestions"];
+        echo($studenteval);
         mysqli_close($conn);
         ?>
     </div>
