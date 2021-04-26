@@ -74,11 +74,11 @@
                         <td id="row"><select name="surveys" onchange="location = this.value;">
                             <option></option>
                             <?php 
-                            $sql_surveys = "SELECT `StudentName` FROM `Student` WHERE `StudentID` IN (SELECT `StudentID` FROM `Groups` WHERE `CourseID` = $course_id AND `GroupNumber` = $groupnum AND `StudentID` != $studentid)";
+                            $sql_surveys = "SELECT `StudentName`, `StudentID` FROM `Student` WHERE `StudentID` IN (SELECT `StudentID` FROM `Groups` WHERE `CourseID` = $course_id AND `GroupNumber` = $groupnum AND `StudentID` != $studentid)";
                             $result_surveys = mysqli_query($conn, $sql_surveys);
                             while ($row_surveys = $result_surveys->fetch_assoc()){
                                 // need to pass thru a value of what student they selected so it can track whose evaluation they're completing
-                                echo "<option value=\"StudentCompleteEval.php\">" . $row_surveys["StudentName"] . "</option>";
+                                echo "<option value=\"StudentCompleteEval.php?rev_id=$studentid&id=$row_surveys[StudentID]&course_id=$row_courses[CourseID]&group_id=$groupnum\">" . $row_surveys["StudentName"] . "</option>";
                             }
                             ?>
                             </select>
