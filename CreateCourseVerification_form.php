@@ -10,18 +10,24 @@
 
     <?php
         include('db_connection.php');
+        include('includes/professor.auth.inc.php'); 
     ?>
     <?php if (isset($_POST['createcourse_form_submitted'])): //this code is executed when the form is submitted ?>
 
         <h2>Creating course: "<?php echo $_POST['CourseName']; ?>"...</h2>
 
             <?php
-            $sql_professorid = "SELECT `ProfessorID` FROM `Professor` WHERE `ProfessorID` = 1234"; //this should be passed in
-            $result_professorid = mysqli_query($conn, $sql_professorid);
-            $row_professorid = mysqli_fetch_array($result_professorid);
-            $professorid = $row_professorid["ProfessorID"]; //variable
             
+            // dont need this anymore
+            // $sql_professorid = "SELECT `ProfessorID` FROM `Professor` WHERE `ProfessorID` = 1234"; //this should be passed in
+            //$result_professorid = mysqli_query($conn, $sql_professorid);
+            //$row_professorid = mysqli_fetch_array($result_professorid);
+            //$professorid = $row_professorid["ProfessorID"]; //variable
+            
+            $professorid = $_SESSION['professorID'];
+
             $coursename = $_POST["CourseName"]; //variable
+
             $sql_verifyname = "SELECT `CourseName` FROM `Course` WHERE `ProfessorID` = $professorid AND `CourseName` = '$coursename'"; //check that this professor doesnt already have course with this name   
             $result_verifyname = mysqli_query($conn, $sql_verifyname);
             

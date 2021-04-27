@@ -10,16 +10,21 @@
 
     <?php
         include('db_connection.php');
+        include('includes/professor.auth.inc.php');
     ?>
     <?php if (isset($_POST['editcourse_form_submitted'])): //this code is executed when the form is submitted ?>
 
         <h2>Updating course name to: "<?php echo $_POST['CourseName']; ?>"...</h2>
 
             <?php
-            $sql_professorid = "SELECT `ProfessorID` FROM `Professor` WHERE `ProfessorID` = 1234"; //this should be passed in -- but dont need it?
-            $result_professorid = mysqli_query($conn, $sql_professorid);
-            $row_professorid = mysqli_fetch_array($result_professorid);
-            $professorid = $row_professorid["ProfessorID"]; //variable
+            
+            // dont need this anymore
+            //$sql_professorid = "SELECT `ProfessorID` FROM `Professor` WHERE `ProfessorID` = 1234"; //this should be passed in -- but dont need it?
+            //$result_professorid = mysqli_query($conn, $sql_professorid);
+            //$row_professorid = mysqli_fetch_array($result_professorid);
+            //$professorid = $row_professorid["ProfessorID"]; //variable
+
+            $professorid = $_SESSION['professorID'];
 
             $sql_courseid = "SELECT `CourseID` FROM `Course` WHERE `ProfessorID` = 1234 LIMIT 1"; //this should be passed in
             $result_courseid = mysqli_query($conn, $sql_courseid);

@@ -29,7 +29,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Prepare a select statement
         // Set parameters
-        $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorName = \"$param_username\" and ProfessorPassword = \"$param_password\" ";
+        // switched from         $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorName = \"$param_username\" and ProfessorPassword = \"$param_password\" ";
+        $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorEmail = \"$param_username\" and ProfessorPassword = \"$param_password\" ";
         $auth_result = mysqli_query($conn,$sql);
 
 
@@ -67,7 +68,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $username_err = "Please enter a username.";
         } else{
             // Prepare a select statement
-            $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorName = ?";
+            // switched from             $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorName = ?";
+            $sql = "SELECT ProfessorEmail FROM Professor WHERE ProfessorName = ?";
             
             if($stmt = mysqli_prepare($conn, $sql)){
                 // Bind variables to the prepared statement as parameters
@@ -89,7 +91,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     ChromePhp::log("No error. So good to make thi the username ");
     // Prepare an insert statement
     $rand_id = rand(100,100000);
-    $sql = "INSERT INTO Professor (ProfessorID,ProfessorName, ProfessorPassword) VALUES ($rand_id, \"$username\", \"$param_password\")";
+    // switched from     $sql = "INSERT INTO Professor (ProfessorID,ProfessorName, ProfessorPassword) VALUES ($rand_id, \"$username\", \"$param_password\")";
+    $sql = "INSERT INTO Professor (ProfessorID,ProfessorEmail, ProfessorPassword) VALUES ($rand_id, \"$username\", \"$param_password\")";
     
     ChromePhp::log("Try to create!!!");
     

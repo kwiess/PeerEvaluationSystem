@@ -10,6 +10,8 @@
 
     <?php
         include('db_connection.php');
+        include('includes/student.auth.inc.php');
+
     ?>
     <?php if (isset($_POST['joincourse_form_submitted'])): //this code is executed when the form is submitted ?>
 
@@ -25,11 +27,15 @@
             if ($rowcount > 0) {
                 echo "<p>Code " . $coursecode . " verified. Adding you to the course group...</p>";
                 //need to insert student in Groups table -- GroupNumber, StudentID, ProfessorID, CourseID
-                $sql_studentid = "SELECT `StudentID` FROM `Student` WHERE `StudentID` = 8888"; // get studentid ... should already have this when they're logged in?
-                $result_studentid = mysqli_query($conn, $sql_studentid);
-                $row_studentid = mysqli_fetch_array($result_studentid);
-                $studentid = $row_studentid["StudentID"]; //variable
                 
+                // dont need this anymore
+                //$sql_studentid = "SELECT `StudentID` FROM `Student` WHERE `StudentID` = 8888"; // get studentid ... should already have this when they're logged in?
+                //$result_studentid = mysqli_query($conn, $sql_studentid);
+                //$row_studentid = mysqli_fetch_array($result_studentid);
+                //$studentid = $row_studentid["StudentID"]; //variable
+                
+                $studentid = $_SESSION['studentID'];
+
                 $sql_professorid = "SELECT `ProfessorID` FROM `Course` WHERE `CourseID` = $coursecode"; 
                 $result_professorid = mysqli_query($conn, $sql_professorid);
                 $row_professorid = mysqli_fetch_array($result_professorid);

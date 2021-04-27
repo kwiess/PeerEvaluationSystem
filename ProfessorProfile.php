@@ -35,11 +35,13 @@
                     </tr>
 
                     <?php
-                    $sql_professorid = "SELECT `ProfessorID` FROM `Professor` WHERE `ProfessorID` = 1234"; // get professorid ... should already have this when they're logged in?
-                    $result_professorid = mysqli_query($conn, $sql_professorid);
-                    $row_professorid = mysqli_fetch_array($result_professorid);
-                    $professorid = $row_professorid["ProfessorID"];
+                    // dont need this section anymore
+                    // $sql_professorid = "SELECT `ProfessorID` FROM `Professor` WHERE `ProfessorID` = 1234"; // get professorid ... should already have this when they're logged in?
+                    //$result_professorid = mysqli_query($conn, $sql_professorid);
+                    //$row_professorid = mysqli_fetch_array($result_professorid);
+                    //$professorid = $row_professorid["ProfessorID"];
 
+                    $professorid = $_SESSION['professorID'];
 
                     $sql_courses = "SELECT * FROM `Course` WHERE `ProfessorID` = $professorid";
                     $result_courses = mysqli_query($conn, $sql_courses);

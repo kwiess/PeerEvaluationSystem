@@ -141,7 +141,7 @@
                         <td id="row"><?php echo $row_professorname["ProfessorName"]; ?></td>
                         <td id="row">Reviewed: <?php echo $row_peerreviewed["StudentName"]; ?></td>
                         <td id="row">Submitted</td>
-                        <td id="selection"><button onclick="window.location.href='StudentReviewEval.php?id=<?php echo $row_evaluations[EvaluationID];?>'" id="ViewButton" type="button">View</button></td>
+                        <td id="selection"><button onclick="window.location.href='StudentReviewEval.php?id=<?php echo $row_evaluations['EvaluationID'];?>'" id="ViewButton" type="button">View</button></td>
                         </tr>
                     <?php
                     }
