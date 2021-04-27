@@ -1,6 +1,7 @@
 <?php
+    include('db_connection.php'); //REVIEW: abosulte for Diana
     include("./includes/ChromePhp.php");
-    include_once("./includes/connect.inc.php");
+    // include_once("./includes/connect.inc.php");
     include('includes/student.auth.inc.php');
 
     //get url param. 

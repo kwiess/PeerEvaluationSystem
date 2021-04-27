@@ -4,7 +4,9 @@
 
 <?php 
 include("./includes/ChromePhp.php");
-include("./includes/connect.inc.php");
+// include("./includes/connect.inc.php");
+include('db_connection.php'); //REVIEW: abosulte for Diana
+
 
 function set_session($id){
     session_start();
