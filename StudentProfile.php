@@ -1,7 +1,7 @@
 <?php
-    // include('db_connection.php'); //REVIEW: abosulte for Diana
+    include('db_connection.php'); //REVIEW: abosulte for Diana
     include("./includes/ChromePhp.php");
-    include_once("./includes/connect.inc.php");
+    //include_once("./includes/connect.inc.php");
     include('includes/student.auth.inc.php');
 
 ?>
@@ -40,11 +40,13 @@
                 
                     <?php 
                   
-                    $sql_studentid = "SELECT `StudentID` FROM `Student` WHERE `StudentID` = 9999"; // get studentid ... should already have this when they're logged in?
-                    $result_studentid = mysqli_query($conn, $sql_studentid);
-                    $row_studentid = mysqli_fetch_array($result_studentid);
-                    $studentid = $row_studentid["StudentID"];
+                    // Dont need this section anymore
+                    //$sql_studentid = "SELECT `StudentID` FROM `Student` WHERE `StudentID` = 9999"; // get studentid ... should already have this when they're logged in?
+                    //$result_studentid = mysqli_query($conn, $sql_studentid);
+                    //$row_studentid = mysqli_fetch_array($result_studentid);
+                    //$studentid = $row_studentid["StudentID"];
 
+                    $studentid = $_SESSION['studentID'];
 
                     $sql_courses = "SELECT `CourseID`, `CourseName`, `ProfessorID` FROM `Course` WHERE `CourseID` IN (SELECT `CourseID` FROM `Groups` WHERE `StudentID` = $studentid)";
                     $result_courses = mysqli_query($conn, $sql_courses);
