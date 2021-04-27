@@ -3,177 +3,121 @@
 <head>
 
 <?php 
-        include("./includes/ChromePhp.php");
-        include("./includes/connect.inc.php");
+include("./includes/ChromePhp.php");
+include("./includes/connect.inc.php");
 
-        function set_session($id){
-            session_start();
-            $sess_id = session_id();
-            $_SESSION['studentID']=$id;
-    
+function set_session($id){
+    session_start();
+    $sess_id = session_id();
+    $_SESSION['studentID']=$id;
+
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $param_username = trim($_POST["username"]);
+    $param_password = trim($_POST["password"]);
+
+        
+    ChromePhp::log($param_username);
+    ChromePhp::log($param_password);
+
+    if(isset($_POST['signin'])){
+        ChromePhp::log("Sign in was posted");
+
+
+        // Prepare a select statement
+        // Set parameters
+        $sql = "SELECT StudentID FROM Student WHERE StudentEmail = \"$param_username\" and StudentPassword = \"$param_password\" ";
+        $auth_result = mysqli_query($conn,$sql);
+
+
+        if(!$auth_result){
+            echo "<script type='text/javascript'>alert('connection failed!');</script>";
+            // echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
+        }else{
+            $num = mysqli_num_rows($auth_result);
+            if($num==0){
+                echo "<script type='text/javascript'>alert('Incorrect student id or password!');</script>";
+                // echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
+            }elseif($num==1){
+                // echo "<script type='text/javascript'>alert('Logged in!');</script>";
+                ChromePhp::log($auth_result);
+                $obj = $auth_result->fetch_object();
+                echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=StudentProfile.php\">";
+                set_session($obj->StudentID);
+                exit;
+            }else{
+                echo "<script type='text/javascript'>alert('Database Error!');</script>";
+                echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
+            }
         }
+    }
 
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    
+
+
+    if(isset($_POST['newMember'])){
+    ChromePhp::log("New member");
+        
+        // Validate username
+        if(empty(trim($_POST["username"]))){
+            $username_err = "Please enter a username.";
+        } else{
+            // Prepare a select statement
+            $sql = "SELECT StudentID FROM Student WHERE StudentEmail = ?";
             
-            if(isset($_POST['signin'])){
-                ChromePhp::log("Sign in was posted");
-
-            // Validate username
-            if(empty(trim($_POST["username"]))){
-                $username_err = "Please enter a username.";
-                ChromePhp::log(username_err);
-
-            } else{
-                // Prepare a select statement
-                // Set parameters
-                $param_username = trim($_POST["username"]);
-                $param_password = trim($_POST["password"]);
+            if($stmt = mysqli_prepare($conn, $sql)){
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "s", $param_username);
                 
-                ChromePhp::log($param_username);
-                ChromePhp::log($param_password);
+    ChromePhp::log("Making query member");
 
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    /* store result */
+                    mysqli_stmt_store_result($stmt);
+                    
+                    if(mysqli_stmt_num_rows($stmt) == 1){
+                        $username_err = "This username is already taken.";
+    ChromePhp::log("Found member with same name");
 
-                
+                    } else{
+                        $username = trim($_POST["username"]);
+    ChromePhp::log("No error. So good to make thi the username ");
+    // Prepare an insert statement
+    $rand_id = rand(100,100000);
+    $sql = "INSERT INTO Student (StudentID,StudentEmail, StudentPassword) VALUES ($rand_id, \"$username\", \"$param_password\")";
+    
+    ChromePhp::log("Try to create!!!");
+    
+    //close prev
+    $return = mysqli_query($conn,$sql);
 
-                $sql = "SELECT StudentID FROM Student WHERE StudentEmail = \"$param_username\" and StudentPassword = \"$param_password\" ";
-                $auth_result = mysqli_query($conn,$sql);
+    if ($return == TRUE){
+        ChromePhp::log("Created!!!");
+        set_session($rand_id);
 
+        // echo "<script type='text/javascript'>alert('Record Added!');</script>";
 
+        echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=StudentProfile.php\">";
+    } else{
+    ChromePhp::log("Failed to create!!!");
+    ChromePhp::log(mysqli_error($conn));
 
-                if(!$auth_result){
-                    echo "<script type='text/javascript'>alert('connection failed!');</script>";
-                    // echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
-                }else{
-                    $num = mysqli_num_rows($auth_result);
-                    if($num==0){
-                        echo "<script type='text/javascript'>alert('Incorrect student id or password!');</script>";
-                        // echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
-                    }elseif($num==1){
-                        // echo "<script type='text/javascript'>alert('Logged in!');</script>";
-                        ChromePhp::log($auth_result);
-                        $obj = $auth_result->fetch_object();
-                        echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=StudentProfile.php\">";
-                        set_session($obj->StudentID);
-                        exit;
-                    }else{
-                        echo "<script type='text/javascript'>alert('Database Error!');</script>";
-                        echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
+    }
                     }
+                } else{
+                    echo "Oops! Something went wrong. Please try again later.";
                 }
+}
+
+                // Close statement
+                mysqli_stmt_close($stmt);
             }
-            mysqli_close($conn);
-        
-                // $stmt = mysqli_prepare($conn, $sql);
+        }
+}
 
-                //     // Bind variables to the prepared statement as parameters
-                //     mysqli_stmt_bind_param($stmt, "s", $param_username, $param_password);
-                //     // mysqli_stmt_bind_param($stmt, "s", $param_password);
-                    
-
-                    
-                //     // Attempt to execute the prepared statement
-                //     if(mysqli_stmt_execute($stmt)){
-                //         echo("Executed");
-                //         /* store result */
-                //         mysqli_stmt_store_result($stmt);
-                //         echo($stmt);
-                //         Chrome
-                //         if(mysqli_stmt_num_rows($stmt) == 1){
-                //             // $username_err = "This username is already taken.";
-                //             echo("Signed in!");
-                //         } else{
-                //             $username = trim($_POST["username"]);
-                //             echo("Didnt Signed in!");
-
-                //         }
-                //     } else{
-                //         echo "Oops! Something went wrong. Please try again later.";
-                //     }
-        
-                    // Close statement
-                    // mysqli_stmt_close($stmt);
-
-            }
-
-            }
-
-            // if(isset($_POST['newMember'])){
-            //     //create user
-            //     // Validate username
-            //     if(empty(trim($_POST["username"]))){
-            //         $username_err = "Please enter a username.";
-            //     } else{
-            //         // Prepare a select statement
-            //         $sql = "SELECT id FROM Student WHERE StudentEmail = ?";
-                    
-            //         if($stmt = mysqli_prepare($link, $sql)){
-            //             // Bind variables to the prepared statement as parameters
-            //             mysqli_stmt_bind_param($stmt, "s", $param_username);
-                        
-            //             // Set parameters
-            //             $param_username = trim($_POST["username"]);
-                        
-            //             // Attempt to execute the prepared statement
-            //             if(mysqli_stmt_execute($stmt)){
-            //                 /* store result */
-            //                 mysqli_stmt_store_result($stmt);
-                            
-            //                 if(mysqli_stmt_num_rows($stmt) == 1){
-            //                     $username_err = "This username is already taken.";
-            //                 } else{
-            //                     $username = trim($_POST["username"]);
-            //                 }
-            //             } else{
-            //                 echo "Oops! Something went wrong. Please try again later.";
-            //             }
-            
-            //             // Close statement
-            //             mysqli_stmt_close($stmt);
-            //         }
-            //     }
-
-            //                 // Validate password
-            // if(empty(trim($_POST["password"]))){
-            //     $password_err = "Please enter a password.";     
-            // } elseif(strlen(trim($_POST["password"])) < 6){
-            //     $password_err = "Password must have atleast 6 characters.";
-            // } else{
-            //     $password = trim($_POST["password"]);
-            // }
-            
-            // // Check input errors before inserting in database
-            // if(empty($username_err) && empty($password_err)){
-                
-            //     // Prepare an insert statement
-            //     $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-                 
-            //     if($stmt = mysqli_prepare($link, $sql)){
-            //         // Bind variables to the prepared statement as parameters
-            //         mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
-                    
-            //         // Set parameters
-            //         $param_username = $username;
-            //         $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-                    
-            //         // Attempt to execute the prepared statement
-            //         if(mysqli_stmt_execute($stmt)){
-            //             // Redirect to login page
-            //             header("location: login.php");
-            //         } else{
-            //             echo "Oops! Something went wrong. Please try again later.";
-            //         }
-        
-            //         // Close statement
-            //         mysqli_stmt_close($stmt);
-            //     }
-            // }
-
-            // }
-            
-
-            
-            // Close connection
-            // mysqli_close($link);
         
 
 ?>

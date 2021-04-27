@@ -21,28 +21,13 @@
         $row_peer = mysqli_fetch_array($result_peer);
 
         ChromePhp::log($row_peer);
+        // ChromePhp::log($row_peerreviewed["EvalQuestions"]);
 
-        $json = '{"foo-bar": 12345}';
-
-        ChromePhp::log($row_peerreviewed["EvalQuestions"]);
-
-        $questions = json_decode($row_peerreviewed["EvalQuestions"]);
-        
-        // $questions = $arr['1'];
-        // print_r($entries);
-        
-
+        // $questions = json_decode($row_peerreviewed["EvalQuestions"]);
+        //remove leading [ and tailing]
+        // $questions = explode(", ",$row_peerreviewed["EvalQuestions"]);
+        $questions  = array($row_peerreviewed["EvalQuestions"], $row_peerreviewed["EvalQuestions2"],$row_peerreviewed["EvalQuestions3"] );
         ChromePhp::log($questions);
-
-        // $arr = Array(
-        //     "0" => "Abc",
-        //     "1" => "1",
-        //     "2" => "2",
-        // );
-
-        // ChromePhp::log(json_encode($arr));
-
-        
 
 
     }
