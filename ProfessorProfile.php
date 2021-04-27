@@ -72,15 +72,14 @@
             <hr><br>
             <button id="joinCourseButton"><a href="ProfessorCreateCourse.php">Create new course</a></button>    
         </div>
+        <div id="grey">
+            <h2>Create a New Survey:</h2>
+            <hr><br>
+            <button id="joinCourseButton"><a href="ProfessorCreateSurvey.php">Create new survey</a></button>    
+        </div>
     </div>
-    <div id="footer2">
 </body>
-<nav id="nav2">
-    <a href="index.html">HOME</a> &nbsp
-    <a href="howitworks.html">HOW IT WORKS</a> &nbsp
-    <a href="team.html">TEAM</a> &nbsp
-    <a href="contacts.html">CONTACT</a> &nbsp
-</nav>
+
 </div>
 
 </html>
