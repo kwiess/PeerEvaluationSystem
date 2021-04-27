@@ -11,6 +11,8 @@
     <?php
         include('db_connection.php');
         include('includes/professor.auth.inc.php');
+        $professorid = $_SESSION['professorID'];
+
     ?>
     <?php if (isset($_POST['editcourse_form_submitted'])): //this code is executed when the form is submitted ?>
 
@@ -24,12 +26,12 @@
             //$row_professorid = mysqli_fetch_array($result_professorid);
             //$professorid = $row_professorid["ProfessorID"]; //variable
 
-            $professorid = $_SESSION['professorID'];
+            $courseid = $_POST["CourseCode"];
 
-            $sql_courseid = "SELECT `CourseID` FROM `Course` WHERE `ProfessorID` = 1234 LIMIT 1"; //this should be passed in
-            $result_courseid = mysqli_query($conn, $sql_courseid);
-            $row_courseid = mysqli_fetch_array($result_courseid);
-            $courseid = $row_courseid["CourseID"]; //variable
+            //$sql_courseid = "SELECT `CourseID` FROM `Course` WHERE `ProfessorID` = $professorid LIMIT 1; //this should be passed in
+            //$result_courseid = mysqli_query($conn, $sql_courseid);
+            //$row_courseid = mysqli_fetch_array($result_courseid);
+            //$courseid = $row_courseid["CourseID"]; //variable
             
             $coursename = $_POST["CourseName"]; //variable
             $sql_verifyname = "SELECT `CourseName` FROM `Course` WHERE `ProfessorID` = $professorid AND `CourseName` = '$coursename'"; //check that this professor doesnt already have course with this name   

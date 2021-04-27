@@ -59,7 +59,7 @@
                         <td id="row"><?php echo $row_courses["CourseID"]; ?></td>
                         <td id="row"><button id="ProfileButton" type="button"><a href="ProfessorEditEvaluation.php">Edit Evaluation</a></button></td>
                         <td id="row"><button id="ProfileButton" type="button"><a href="ProfessorEditCourse.php">Edit Course</a></button></td>
-                        <td id="row"><button id="ProfileButton" type="button"><a href="ProfessorViewIndEvals.php">View Evaluations</a></button></td>
+                        <td id="row"><button id="ProfileButton" type="button"><a href="ProfessorViewIndEval.php">View Evaluations</a></button></td>
                         <td></td>
                         </tr>
                     <?php
