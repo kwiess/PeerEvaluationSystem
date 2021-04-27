@@ -6,7 +6,8 @@
 
 
 include('./includes/ChromePhp.php');
-include("./includes/connect.inc.php");
+include('db_connection.php'); //REVIEW: abosulte for Diana
+// include("./includes/connect.inc.php");
 include("./includes/student.auth.inc.php");
 
     if(isset($_POST['submit'])){
