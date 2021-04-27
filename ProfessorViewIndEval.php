@@ -26,13 +26,20 @@
         <h1>View Evaluation</h1>
         <div id="grey">
             <h2><u>IS 424</u></h2>
-            <div><button id="joinCourseButton"><a href="placeholder.html">Aggregate View</a></button></div>  
 
             <br>
-            <h2><u>You are viewing **Student** evaluations</u></h2> <br>
+            
             
             Select Another Student
-   
+            <form action="ProfessorViewIndEval.php" method="POST">
+            <select name="StudentName" id="StudentName">
+                <option value="Kyle"> Kyle</option>
+                <option value="Diana"> Diana</option>
+                <option value="Olivia"> Olivia</option>
+                <option value="Breydn"> Breydn</option>
+            </select>
+            <input type="submit" name="submit"/>
+    </form>
             <hr>   
                
         </div>
@@ -52,18 +59,23 @@
 
     ?>
         <?php
-        // $name = "$_POST['StudentName']";
-        $name= "Kyle";
-        $sql_studentid = "SELECT 'StudentID' FROM 'student' WHERE 'StudentName' = $name";
+        $name = $_POST['StudentName'];
+        echo "<p> <font  size='6pt'>You are viewing evaluation results for $name</font> </p>";
+        // echo ($name);
+        echo nl2br("\n\n");
+        //  $name= "Kyle";
+        $sql_studentid = "SELECT StudentID FROM student WHERE StudentName = \"$name\"";
         $result_studentid = mysqli_query($conn, $sql_studentid);
         $row_studentid = mysqli_fetch_array($result_studentid);
         $studentid = $row_studentid["StudentID"];
-        $sql_studenteval = "SELECT 'EvalQuestions' FROM 'Evaluations' WHERE 'studentID'=$student_id";
+        $sql_studenteval = "SELECT EvalQuestions FROM Evaluation WHERE studentID = \"$studentid\"";
         $result_studenteval = mysqli_query($conn, $sql_studenteval);
         $row_studenteval = mysqli_fetch_array($result_studenteval);
         $student_eval = $row_studenteval["EvalQuestions"];
-        echo($studenteval);
+        echo($student_eval);
         mysqli_close($conn);
+
+    
         ?>
     </div>
 

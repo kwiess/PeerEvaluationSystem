@@ -7,14 +7,13 @@
 </head>
 <body>
     <form action="ProfessorViewIndEval.php" method="POST">
-        <p>
             <select name="StudentName" id="StudentName">
                 <option value="Kyle"> Kyle</option>
                 <option value="Diana"> Diana</option>
                 <option value="Olivia"> Olivia</option>
                 <option value="Breydn"> Breydn</option>
             </select>
-        </p>
+            <input type="submit" name="submit"/>
     </form>
 </body>
 </html>
