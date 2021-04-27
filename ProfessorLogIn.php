@@ -9,7 +9,7 @@ include("./includes/connect.inc.php");
 function set_session($id){
     session_start();
     $sess_id = session_id();
-    $_SESSION['studentID']=$id;
+    $_SESSION['professorID']=$id;
 
 }
 
@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Prepare a select statement
         // Set parameters
-        $sql = "SELECT StudentID FROM Student WHERE StudentEmail = \"$param_username\" and StudentPassword = \"$param_password\" ";
+        $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorName = \"$param_username\" and ProfessorPassword = \"$param_password\" ";
         $auth_result = mysqli_query($conn,$sql);
 
 
@@ -37,14 +37,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }else{
             $num = mysqli_num_rows($auth_result);
             if($num==0){
-                echo "<script type='text/javascript'>alert('Incorrect student id or password!');</script>";
+                echo "<script type='text/javascript'>alert('Incorrect Professor id or password!');</script>";
                 // echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
             }elseif($num==1){
                 // echo "<script type='text/javascript'>alert('Logged in!');</script>";
                 ChromePhp::log($auth_result);
                 $obj = $auth_result->fetch_object();
-                echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=StudentProfile.php\">";
-                set_session($obj->StudentID);
+                echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=ProfessorProfile.php\">";
+                set_session($obj->ProfessorID);
                 exit;
             }else{
                 echo "<script type='text/javascript'>alert('Database Error!');</script>";
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $username_err = "Please enter a username.";
         } else{
             // Prepare a select statement
-            $sql = "SELECT StudentID FROM Student WHERE StudentEmail = ?";
+            $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorName = ?";
             
             if($stmt = mysqli_prepare($conn, $sql)){
                 // Bind variables to the prepared statement as parameters
@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     ChromePhp::log("No error. So good to make thi the username ");
     // Prepare an insert statement
     $rand_id = rand(100,100000);
-    $sql = "INSERT INTO Student (StudentID,StudentEmail, StudentPassword) VALUES ($rand_id, \"$username\", \"$param_password\")";
+    $sql = "INSERT INTO Professor (ProfessorID,ProfessorName, ProfessorPassword) VALUES ($rand_id, \"$username\", \"$param_password\")";
     
     ChromePhp::log("Try to create!!!");
     
@@ -100,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // echo "<script type='text/javascript'>alert('Record Added!');</script>";
 
-        echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=StudentProfile.php\">";
+        echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=ProfessorProfile.php\">";
     } else{
     ChromePhp::log("Failed to create!!!");
     ChromePhp::log(mysqli_error($conn));
@@ -124,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Student Log In</title>
+    <title>Professor Log In</title>
 </head>
 
 <body>
@@ -139,8 +139,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
     <div id="LogIn">
         <div class="container">
-            <h1 id="LogInTitle">Student Sign In</h1>
-            <form action="StudentLogIn.php" name="login_form" method="POST" class="center-block align-center col-lg-5 col-md-5 col-sm-10 col-xs-10">
+            <h1 id="LogInTitle">Professor Sign In</h1>
+            <form action="ProfessorLogIn.php" name="login_form" method="POST" class="center-block align-center col-lg-5 col-md-5 col-sm-10 col-xs-10">
                 <label for="Username"><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" name="username" required><br><br>
                 <label for="psw"><b>Password</b></label>

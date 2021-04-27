@@ -7,11 +7,11 @@
 	$myDB = "app_db";
 	$conn = mysqli_connect($myRemoteDB, $myUserName, $myPassword, $myDB, $port);
 	if (!$conn) {
-		ChromePhp::log("NOT Connected");
+		// ChromePhp::log("NOT Connected");
 		die("Connection failed: ");
 	} 
 	else{
-		ChromePhp::log("Connected");
+		// ChromePhp::log("Connected");
 	}
 
 
