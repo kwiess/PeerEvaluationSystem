@@ -54,70 +54,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
     }
-
-
-    
-
-
-    if(isset($_POST['newMember'])){
-    ChromePhp::log("New member");
-        
-        // Validate username
-        if(empty(trim($_POST["username"]))){
-            $username_err = "Please enter a username.";
-        } else{
-            // Prepare a select statement
-            $sql = "SELECT StudentID FROM Student WHERE StudentEmail = ?";
-            
-            if($stmt = mysqli_prepare($conn, $sql)){
-                // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "s", $param_username);
-                
-    ChromePhp::log("Making query member");
-
-                // Attempt to execute the prepared statement
-                if(mysqli_stmt_execute($stmt)){
-                    /* store result */
-                    mysqli_stmt_store_result($stmt);
-                    
-                    if(mysqli_stmt_num_rows($stmt) == 1){
-                        $username_err = "This username is already taken.";
-    ChromePhp::log("Found member with same name");
-
-                    } else{
-                        $username = trim($_POST["username"]);
-    ChromePhp::log("No error. So good to make thi the username ");
-    // Prepare an insert statement
-    $rand_id = rand(100,100000);
-    $sql = "INSERT INTO Student (StudentID,StudentEmail, StudentPassword) VALUES ($rand_id, \"$username\", \"$param_password\")";
-    
-    ChromePhp::log("Try to create!!!");
-    
-    //close prev
-    $return = mysqli_query($conn,$sql);
-
-    if ($return == TRUE){
-        ChromePhp::log("Created!!!");
-        set_session($rand_id);
-
-        // echo "<script type='text/javascript'>alert('Record Added!');</script>";
-
-        echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=StudentProfile.php\">";
-    } else{
-    ChromePhp::log("Failed to create!!!");
-    ChromePhp::log(mysqli_error($conn));
-
-    }
-                    }
-                } else{
-                    echo "Oops! Something went wrong. Please try again later.";
-                }
-}
-
-                // Close statement
-                mysqli_stmt_close($stmt);
-            }
-        }
 }
 
         
@@ -148,9 +84,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required><br><br>
                 <button id="SignIn" name="signin"  type="submit">Sign In</button><br>
-                <button id="newMember" name="newMember"  type="submit">Not a Member Yet?</button>
                 <button id="forgotpassword" name="forgotpassword"  type="submit">Forgot Password?</button>
 				</form>
+
+                <button id="newMember" onclick="window.location.href='StudentSignUp.php'" >Not a Member Yet?</button>
 
         </div>
     </div>

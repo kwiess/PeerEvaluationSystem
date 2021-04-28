@@ -5,6 +5,8 @@
 	$myRemoteDB = "127.0.0.1";
 	$port ="6033";
 	$myDB = "app_db";
+	// $myDB = "peerevaluation";
+
 	$conn = mysqli_connect($myRemoteDB, $myUserName, $myPassword, $myDB, $port);
 	if (!$conn) {
 		// ChromePhp::log("NOT Connected");

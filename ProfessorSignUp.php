@@ -1,10 +1,7 @@
-<html lang="en">
-
-<head>
-
 <?php 
-include("./includes/ChromePhp.php");
 // include("./includes/connect.inc.php");
+include("./includes/ChromePhp.php");
+
 include('db_connection.php'); //REVIEW: abosulte for Diana
 
 
@@ -14,62 +11,21 @@ function set_session($id){
     $_SESSION['professorID']=$id;
 
 }
+  if(isset($_POST['newMember'])){
+    ChromePhp::log($_POST);
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
     $param_username = trim($_POST["username"]);
+        
+    $param_name = trim($_POST["name"]);
     $param_password = trim($_POST["password"]);
 
-        
-    ChromePhp::log($param_username);
-    ChromePhp::log($param_password);
-
-    if(isset($_POST['signin'])){
-        ChromePhp::log("Sign in was posted");
-
-
-        // Prepare a select statement
-        // Set parameters
-        // switched from         $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorName = \"$param_username\" and ProfessorPassword = \"$param_password\" ";
-        $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorEmail = \"$param_username\" and ProfessorPassword = \"$param_password\" ";
-        $auth_result = mysqli_query($conn,$sql);
-
-
-        if(!$auth_result){
-            echo "<script type='text/javascript'>alert('connection failed!');</script>";
-            // echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
-        }else{
-            $num = mysqli_num_rows($auth_result);
-            if($num==0){
-                echo "<script type='text/javascript'>alert('Incorrect Professor id or password!');</script>";
-                // echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
-            }elseif($num==1){
-                // echo "<script type='text/javascript'>alert('Logged in!');</script>";
-                ChromePhp::log($auth_result);
-                $obj = $auth_result->fetch_object();
-                echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=ProfessorProfile.php\">";
-                set_session($obj->ProfessorID);
-                exit;
-            }else{
-                echo "<script type='text/javascript'>alert('Database Error!');</script>";
-                echo "<META HTTP-EQUIV=\"refresh\" content=\"0; URL=login.php\">";
-            }
-        }
-    }
-
-
-    
-
-
-    if(isset($_POST['newMember'])){
-    ChromePhp::log("New member");
-        
         // Validate username
         if(empty(trim($_POST["username"]))){
             $username_err = "Please enter a username.";
         } else{
             // Prepare a select statement
             // switched from             $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorName = ?";
-            $sql = "SELECT ProfessorEmail FROM Professor WHERE ProfessorName = ?";
+            $sql = "SELECT ProfessorID FROM Professor WHERE ProfessorEmail = ?";
             
             if($stmt = mysqli_prepare($conn, $sql)){
                 // Bind variables to the prepared statement as parameters
@@ -85,6 +41,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_num_rows($stmt) == 1){
                         $username_err = "This username is already taken.";
     ChromePhp::log("Found member with same name");
+        echo "<script type='text/javascript'>alert('This username is already taken!');</script>";
+
 
                     } else{
                         $username = trim($_POST["username"]);
@@ -92,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Prepare an insert statement
     $rand_id = rand(100,100000);
     // switched from     $sql = "INSERT INTO Professor (ProfessorID,ProfessorName, ProfessorPassword) VALUES ($rand_id, \"$username\", \"$param_password\")";
-    $sql = "INSERT INTO Professor (ProfessorID,ProfessorEmail, ProfessorPassword) VALUES ($rand_id, \"$username\", \"$param_password\")";
+    $sql = "INSERT INTO Professor (ProfessorID,ProfessorName, ProfessorEmail, ProfessorPassword) VALUES ($rand_id, \"$param_name\", \"$username\", \"$param_password\")";
     
     ChromePhp::log("Try to create!!!");
     
@@ -121,15 +79,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_close($stmt);
             }
         }
-}
-
-        
-
 ?>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Professor Log In</title>
+    <title>Student Log In</title>
 </head>
 
 <body>
@@ -144,17 +101,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
     <div id="LogIn">
         <div class="container">
-            <h1 id="LogInTitle">Professor Sign In</h1>
-            <form action="ProfessorLogIn.php" name="login_form" method="POST" class="center-block align-center col-lg-5 col-md-5 col-sm-10 col-xs-10">
-                <label for="Username"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required><br><br>
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required><br><br>
-                <button id="SignIn" name="signin"  type="submit">Sign In</button><br>
+            <h1 id="LogInTitle">Professor Sign Up</h1>
+            <form action="ProfessorSignUp.php" name="login_form" method="POST" class="center-block align-center col-lg-5 col-md-5 col-sm-10 col-xs-10">
+
+            <label for="Username"><b>Name</b></label>
+            <input type="text" placeholder="Enter Username" name="name" required><br><br>
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email Address" name="username" required><br><br>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required><br><br>
+            <label id="agree"><input type="checkbox" checked="checked" name="remember">I agree to terms of use and privacy</label><br><br>
+            <button id="SignIn" type="submit" name="newMember" >Sign Up</button><br>
+
 				</form>
 
-                <button id="newMember" onclick="window.location.href='ProfessorSignUp.php'" >Not a Member Yet?</button>
-                <button id="forgotpassword" name="forgotpassword"  type="submit">Forgot Password?</button>
         </div>
     </div>
     <div id="footer">

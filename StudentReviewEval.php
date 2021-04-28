@@ -63,7 +63,7 @@
         <h2>IS424</h2>
         <h3>Your evaluation for <?php echo $row_peer["StudentName"]; ?>                      
         </h3>
-        <p>Submitted on April 2nd, 3:43PM </p>
+        <!-- <p>Submitted on April 2nd, 3:43PM </p> -->
         <div id="grey">
             <hr>
 
@@ -115,7 +115,7 @@
         </div>
         <div class="center"> 
 
-            <button id="joinCourseButton">Back to My Profile</button>
+            <button id="joinCourseButton" onclick="window.location.href='StudentProfile.php'" >Back to My Profile</button>
         </div>
     </div>
     <div id="footer">

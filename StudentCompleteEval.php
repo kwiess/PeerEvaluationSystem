@@ -101,9 +101,9 @@ include("./includes/student.auth.inc.php");
 
             <form action="<?php echo "StudentCompleteEval.php?rev_id=$_GET[rev_id]&id=$_GET[id]&course_id=$_GET[course_id]&group_id=$_GET[group_id]" ?>" method="POST">
                 <label for="q1">1. What are this peer's strengths?</label> <br>
-                <textarea id="q1" name="q1" rows="4" cols="50">Here</textarea><br><br>
+                <textarea id="q1" name="q1" rows="4" cols="50"></textarea><br><br>
                 
-                    <label for="q2">2. Did this peer contribute their share to the prohect?</label> <br>
+                    <label for="q2">2. Did this peer contribute their share to the project?</label> <br>
                 <input type="checkbox" name="q2"> Yes<br><br>
 
 
@@ -124,10 +124,10 @@ include("./includes/student.auth.inc.php");
 
                     <div class="center"> 
             <button id="joinCourseButton" name="submit">Submit</button>
-            <button id="joinCourseButton" onclick="window.location.href='StudentProfile.php'" >Cancel</button>
 
         </div>
               </form>
+            <button id="joinCourseButton" onclick="window.location.href='StudentProfile.php'" >Cancel</button>
 
               <hr>
 
