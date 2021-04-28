@@ -16,7 +16,7 @@
 $courseid = $_POST["CourseID"];
 $evalquestions = $_POST["SurveyQuestion"];
 $EvaluationID = mt_rand(1000,9999);
-$sql_createsurvey = "INSERT INTO `evaluation` (`CourseID`, `EvalQuestions`, `EvaluationID`) VALUES ($courseid, '$evalquestions', $EvaluationID)";
+$sql_createsurvey = "INSERT INTO evaluation (`CourseID`, `EvalQuestions`, `EvaluationID`) VALUES ($courseid, '$evalquestions', $EvaluationID)";
 if (mysqli_query($conn, $sql_createsurvey)) {
     echo "<p>Your survey has been created with the survey ID of: " . $EvaluationID . ". Redirecting to Profile Page...</p>";
 ?> 
@@ -24,6 +24,6 @@ if (mysqli_query($conn, $sql_createsurvey)) {
                    
 <?php
 } else {
-    echo "Error: " . $sql_createcourse . ":-" . mysqli_error($conn);
+    echo "Error: " . $sql_createsurvey . ":-" . mysqli_error($conn);
  }
 ?>
