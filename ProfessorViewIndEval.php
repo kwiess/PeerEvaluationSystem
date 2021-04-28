@@ -28,7 +28,7 @@
             <h2><u>IS 424</u></h2>
 
             <br>
-            
+            <h2><u>You are viewing **Student** evaluations</u></h2> <br>
             
             Select Another Student
             <form action="ProfessorViewIndEval.php" method="POST">
